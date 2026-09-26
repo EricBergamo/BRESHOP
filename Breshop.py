@@ -87,12 +87,21 @@ class LojaApp:
             ("Estoque", "#1565c0", "estoque"),
             ("Relatórios", "#6a1b9a", "relatorios"),
         )
-        for texto, cor, destino in botoes:
+        linha_botoes = tk.Frame(tela)
+        linha_botoes.pack()
+        for texto, cor, destino in botoes[:2]:
             tk.Button(
-                tela, text=texto, bg=cor, fg="white",
+                linha_botoes, text=texto, bg=cor, fg="white",
                 command=lambda destino=destino: self.mostrar_tela(destino),
                 **estilo,
-            ).pack(pady=6)
+            ).pack(side="left", padx=6, pady=6)
+
+        texto, cor, destino = botoes[2]
+        tk.Button(
+            tela, text=texto, bg=cor, fg="white",
+            command=lambda destino=destino: self.mostrar_tela(destino),
+            **estilo,
+        ).pack(pady=6)
 
     def montar_vendas(self):
         tela = self.telas["venda"]
